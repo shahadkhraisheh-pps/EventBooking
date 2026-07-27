@@ -1,0 +1,111 @@
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ececec;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid transparent;
+}
+
+section h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 25px;
+}
+
+.auth-form {
+    margin-block-end: 1rem;
+}
+
+.auth-form-item {
+    display: flex;
+    margin-block-end: 1rem;
+    flex-direction: column;
+}
+
+
+.auth-form-item input {
+    height: 40px;
+    margin-top: 0.5rem;
+    padding: 0 10px;
+    border: 1px solid black;
+}
+
+.auth-form-item input.ng-invalid.ng-dirty, .auth-form-item input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.auth-form-item p {
+    color: red;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+button > svg {
+    margin-right: 10px;
+}
+
+button.auth-form-button, button.auth-logout {
+    background-color: #000;
+    color: white;
+}
+
+button.auth-button {
+    background-color: white;
+    border: 1px solid black;
+}
+
+section, button.auth-button, button.auth-form-button {
+    border-radius: .5rem;
+}
+
+section > p {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+section > p a {
+    margin-left: 5px;
+    color: rgb(47, 47, 82);
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.welcome span {
+    font-size: 27px;
+    color: cornflowerblue;
+}
+
+button.auth-logout {
+    width: 100px;
+    align-self: center;
+}
