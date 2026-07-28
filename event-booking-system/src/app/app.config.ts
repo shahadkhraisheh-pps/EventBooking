@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { getAuth } from 'firebase/auth/web-extension';
+import { getAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { firebaseConfig } from './core/environments/environment';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore/lite';
