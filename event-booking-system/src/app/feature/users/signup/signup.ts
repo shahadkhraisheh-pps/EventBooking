@@ -15,6 +15,11 @@ isLoading=signal(false);
 error:string='';
 constructor(private authService: AuthService,private router:Router) { }
 signupForm:FormGroup=new FormGroup({
+  username: new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.pattern(/^[a-zA-Z0-9]+$/)
+  ]),
      email: new FormControl('', [
       Validators.required,
       Validators.email,
@@ -32,7 +37,8 @@ ngOnInit(): void {
 signUpWithEmailAndPassword(){
   const email=this.signupForm.value?.email;
   const password=this.signupForm.value?.password;
-  this.authService.signUpWithEmailAndPassword(email,password).then(
+  const username=this.signupForm.value?.username;
+  this.authService.signUpWithEmailAndPassword(username, email, password).then(
     (user) => {
       this.router.navigate(['/events']);
     }
@@ -42,7 +48,7 @@ signUpWithEmailAndPassword(){
   });
 }
   signUpWithGoogle():void{
-    this.authService.signInWithGoogle().then(
+    this.authService.loginWithGoogle().then(
       (user) => {
         this.router.navigate(['/events']);
       }
