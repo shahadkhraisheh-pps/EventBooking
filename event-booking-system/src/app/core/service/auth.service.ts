@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root',
 })
 export class AuthService {
-   // Inject the modern Auth instance and HttpClient using the inject() function
   private auth = inject(Auth);
   private http = inject(HttpClient);
 
