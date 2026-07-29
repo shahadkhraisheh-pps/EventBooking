@@ -12,9 +12,9 @@ export class Header {
  private authService=inject(AuthService);
  private route=inject(Router)
 
-isLoggedIn = this.authService.isLoggedIn;
+  isLoggedIn = this.authService.isLoggedIn;
 
-
+//logout user that from auth service
   logout() {
     this.authService.logout();
     this.route.navigate(['/events']);
