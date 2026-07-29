@@ -7,7 +7,8 @@
 
     <div class="header-btn">
         @if (isLoggedIn()) {
-            <button class="btn" (click)="logout()">Logout</button>
+            <p class="user-info"> <mat-icon>account_circle</mat-icon> {{currentUser()?.displayName}} {{currentUser()?.email}}              <button class="btn" (click)="logout()">Logout</button>
+</p>
         }@else {
             <button class="btn" [routerLink]="['/login']">Login</button>
                                 

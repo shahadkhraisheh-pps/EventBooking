@@ -13,11 +13,13 @@ height:stretch;
 width: stretch;
 }
 .upper-header{
+  padding-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .bottom-header{
+  margin-top: -1.5rem;
   display: flex;
   flex-direction: row;
   justify-content:center;
@@ -62,7 +64,15 @@ width: stretch;
 .header-btn {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: .1rem;
+  flex-direction: column;
+  margin-top:-2rem ;
+}
+.header-btn .user-info{
+  color: #574964;
+  font-weight: 900;
+  text-align: center;
+
 }
 
 .btn {
@@ -83,10 +93,11 @@ width: stretch;
 }
 
 .mat-icon {
-  color: var(--icon);
+  color:#574964;
   width: 2rem;
   border-radius: 100px;
   transition: color 0.3s ease;
+  margin-bottom: -.4rem;
 }
 
 button {
