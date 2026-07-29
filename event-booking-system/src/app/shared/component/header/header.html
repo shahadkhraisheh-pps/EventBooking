@@ -1,24 +1,32 @@
 <header>
-    <div class="logo">
+   <div class="upper-header">
+<div class="logo">
         <a routerLink="/events">Event Booking System</a>
     </div>
-    <div class="nav-menu">
+   
+
+    <div class="header-btn">
+        @if (isLoggedIn()) {
+            <button class="btn" (click)="logout()">Logout</button>
+        }@else {
+            <button class="btn" [routerLink]="['/login']">Login</button>
+                                
+        }
+    </div>
+   </div>
+    <div class="bottom-header">
+        <div class="nav-menu">
         <div class="nav-link">
             <nav>
                 <ul>
                     <li><a [routerLink]="['/events']" routerLinkActive="active">Events</a></li>
-                    <li><a [routerLink]="['/booking']" routerLinkActive="active">Booking</a></li>
-                    @if (!isLoggedIn()) {
-                        <li><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-                    }
+                    <li><a [routerLink]="['/bookings']" routerLinkActive="active">Booking</a></li>
+                   
                 </ul>
             </nav>
         </div>
-    </div>
-
-    <div class="header-btn">
-        @if (isLoggedIn()) {
-            <button class="logout-button" (click)="logout()">Logout</button>
-        }
+ </div>
+     
+   
     </div>
 </header>

@@ -1,33 +1,39 @@
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+  display:block;
+  padding: 1rem 3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--header-bg);
+  background-color: #ffdab3b9;
   transition: background-color 0.3s ease, color 0.3s ease;
   position:relative;
   z-index: 1000;
-  align-items: center;
-width: auto;
+margin: 0;
+height:stretch;
+width: stretch;
 }
-
+.upper-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bottom-header{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
 .logo a {
   font-size: 1.4rem;
-  color: var(--text);
+  color: #574964;
   font-weight: 900;
   text-decoration: none;
-  text-shadow: 4px 4px 20px var(--glow);
+  text-shadow: 4px 4px 12px #574964;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-grow: 1;
-  margin-left: 2rem;
 
 }
 
@@ -43,14 +49,14 @@ width: auto;
 
 .nav-link nav ul li a {
   text-decoration: none;
-  color: var(--text);
+  color: #574964;
   font-weight: 900;
   font-size: 1.4rem;
   transition: color 0.3s ease;
 }
 
 .nav-link nav ul li a:hover {
-  color: var(--text-hover);
+  color: #57496492;
 }
 
 .header-btn {
@@ -59,21 +65,21 @@ width: auto;
   gap: 1rem;
 }
 
-.login-btn {
+.btn {
   width: 7rem;
   height: 2.4rem;
   border-style: none;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  font-weight: 500;
+  background-color: #C8AAAA;
+  color:#574964 ;
+  font-weight: 900;
   border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
-.login-btn a {
+.btn a {
   text-decoration: none;
-  color: var(--btn-text);
-  font-weight: 900;
+  color:#574964;
+  font-weight:900;
 }
 
 .mat-icon {
