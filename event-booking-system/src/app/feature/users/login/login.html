@@ -1,5 +1,6 @@
 <body>
-<section>
+@if(!isLoading()){
+ <section>
     <h2>Login</h2>
     <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="loginWithEmailAndPassword()">
         <div class="auth-form-item">
@@ -46,6 +47,12 @@
     </button>
     <p>You don't have an account ?<a [routerLink]="['/signup']">Sign Up </a></p>
 </section>
+}@else {
+        <div style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+}
+   
 
 </body>
 
