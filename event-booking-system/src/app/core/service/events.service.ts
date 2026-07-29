@@ -9,34 +9,27 @@ import { Observable } from 'rxjs/internal/Observable';
 export class EventsService {
   
 private firestore = inject  (Firestore);
-    addEvents(eventData: any) {
+//add the event data and store it as doc in event collection
+    addEvents(eventData: Omit<Events, 'id'>) {
         const eventRef=collection(this.firestore, 'events');
         return addDoc(eventRef, eventData);
     }
-
+//get all event doc in the collection
     getEvents():Observable<Events[]> {
         const eventsRef=collection(this.firestore, 'events');
-
         return collectionData(eventsRef,{idField: 'id'}) as Observable<Events[]>;
     }
-    getEventById(id: string): Observable<Events> {
+    //get the event by id 
+    getEventById(id: string): Observable<Events | undefined> {
         const eventDocRef = doc(this.firestore, 'events', id);
-        return docData(eventDocRef,{idField: 'id'}) as Observable<Events>;
+        return docData(eventDocRef,{idField: 'id'}) as Observable<Events | undefined>;
     }
-
-    updateEvent(id: string, eventData: any) {
+//update the event data
+    updateEvent(id: string, eventData: Partial<Omit<Events, 'id'>>) {
       const eventsRef=doc(this.firestore, 'events', id);
-        return updateDoc(eventsRef, {
-            title: eventData.title,
-            description: eventData.description,
-            date: eventData.date,
-            capacity: eventData.capacity,
-            location: eventData.location,
-            bookedSeats: eventData.bookedSeats,
-            imageUrl: eventData.imageUrl
-        });
+        return updateDoc(eventsRef, eventData);
     }
-
+//delete the event
     deleteEvent(id: string) {
         const eventsRef = doc(this.firestore, 'events', id);
         return deleteDoc(eventsRef);
