@@ -6,5 +6,4 @@ export interface Events {
   capacity: number;
   location: string;
   bookedSeats: number;
-  imageUrl: string;
 }
