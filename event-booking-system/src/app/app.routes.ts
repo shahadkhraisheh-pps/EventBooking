@@ -7,4 +7,5 @@ export const routes: Routes = [
 {path:'signup', loadComponent: () => import('./feature/users/signup/signup').then(m => m.Signup)},
 {path:'bookings', loadComponent: () => import('./feature/booking/booking-list/booking-list').then(m => m.BookingList), canActivate: [authGuardGuard]},
 {path:'events', loadComponent: () => import('./feature/events/event-list/event-list').then(m => m.EventList)},
+{path:'events/new', loadComponent: () => import('./feature/events/event-form/event-form').then(m => m.EventForm), canActivate: [authGuardGuard]},
 ];
