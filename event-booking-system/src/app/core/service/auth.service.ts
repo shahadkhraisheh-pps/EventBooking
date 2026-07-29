@@ -9,30 +9,34 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root',
 })
 export class AuthService {
+
   private auth = inject(Auth);
   private firestore=inject(Firestore);
 
   constructor() { }
+  //get the current user from the authstate and convert it to signal 
   currentUser = toSignal(authState(this.auth), { initialValue: undefined });
-  
+  //see if the user is logged in 
   isLoggedIn = computed(() => this.currentUser() !== null && this.currentUser() !== undefined);
 
+  //get the current user 
   getCurrentUser(): Observable<User | null> {
     return authState(this.auth);
   }
 
+//sign up with name and email and password
   signUpWithEmailAndPassword(displayName: string, email: string, password: string): Promise<any> {
-  return createUserWithEmailAndPassword(this.auth, email, password)
+  return createUserWithEmailAndPassword(this.auth, email, password) //use the auth method that firebase provide
     .then((userCredential) => {
       const user = userCredential.user;
       
-      // Update the Auth profile display name
+      // update the auth profile display name
       return updateProfile(user, { displayName: displayName })
         .then(() => {
-          // Create a specific document reference using the user's Auth UID
+          // create a specific document reference using the user's auth uid
           const userDocRef = doc(this.firestore, `users/${user.uid}`);
 
-          // Use setDoc to save user metadata in Firestore
+          // use setDoc to save user metadata in firestore
           return setDoc(userDocRef, {
             uid: user.uid,
             displayName: displayName,
@@ -44,7 +48,7 @@ export class AuthService {
   }
   
   loginWithEmailAndPassword(email: string, password: string): Promise<any> {
-    return signInWithEmailAndPassword(this.auth, email, password);
+    return signInWithEmailAndPassword(this.auth, email, password); //login in with auth proived method
   }
 
 
@@ -52,9 +56,26 @@ export class AuthService {
   
 loginWithGoogle(): Promise<any> {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(this.auth, provider);
+  return signInWithPopup(this.auth, provider) .then((userCredential) => {
+      const user = userCredential.user;
+      
+      // update the auth profile display name
+      return updateProfile(user, { displayName: user.displayName })
+        .then(() => {
+          // create a specific document reference using the user's audth ui
+          const userDocRef = doc(this.firestore, `users/${user.uid}`);
+
+          // use setDoc to save user metadata in firestore
+          return setDoc(userDocRef, {
+            uid: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            createdAt: new Date().toISOString(),
+          });
+        });
+    });
 }
   logout(): Promise<void> {
-    return signOut(this.auth);
+    return signOut(this.auth); //logout the user
   }
 }
