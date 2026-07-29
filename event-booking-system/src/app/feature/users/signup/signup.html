@@ -1,4 +1,9 @@
   <body>
+  @if(error){
+   <div class="alert-danger">
+    <p>{{error}}</p>
+</div>
+}
 @if(!isLoading()){
  <section>
     <h2>Sign Up</h2>
@@ -51,7 +56,7 @@
         </svg>
         Login With Google
     </button>
-    <p>Do you have an account ? <a [routerLink]="['/login']">Login </a></p>
+    <p class="login-signup-message">Do you have an account ? <a [routerLink]="['/login']">Login </a></p>
 </section> 
 }@else {
     <div style="text-align: center;">

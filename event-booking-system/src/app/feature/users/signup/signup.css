@@ -6,15 +6,15 @@ body {
     justify-content: center;
     height: 100vh;
     overflow: hidden;
-    background-color: #ececec;
+    flex-direction: column;
 }
 
 section {
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 400px;
-    background-color: white;
+    height: auto;
+    background-color: #ffdab399;
     padding: 2rem;
     border: 1px solid transparent;
 }
@@ -22,7 +22,10 @@ section {
 section h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    font-size: 25px;
+    font-size: 2.6rem;
+    color: #574964;
+    font-weight: 900;
+    text-align: center;
 }
 
 .auth-form {
@@ -40,7 +43,8 @@ section h2 {
     height: 40px;
     margin-top: 0.5rem;
     padding: 0 10px;
-    border: 1px solid black;
+    border: 1px solid #574964;
+    border-radius: 10px;
 }
 
 .auth-form-item input.ng-invalid.ng-dirty, .auth-form-item input.ng-invalid.ng-touched {
@@ -50,7 +54,15 @@ section h2 {
 .auth-form-item p {
     color: red;
 }
+.alert-danger{
+        color: red;
+        border: 1px solid red;
+        padding: 0 .4rem;
+        border-radius: 10px;
+        margin-top: -10rem;
+        margin-bottom: 1rem;
 
+}
 button {
     display: flex;
     justify-content: center;
@@ -59,15 +71,17 @@ button {
     width: 100%;
     border: none;
     cursor: pointer;
+    background-color: #574964;
 }
 
 button > svg {
     margin-right: 10px;
 }
 
-button.auth-form-button, button.auth-logout {
-    background-color: #000;
+button.auth-form-button {
+    background-color: #574964;
     color: white;
+    font-weight: 700;
 }
 
 button.auth-button {
@@ -78,34 +92,15 @@ button.auth-button {
 section, button.auth-button, button.auth-form-button {
     border-radius: .5rem;
 }
-
-section > p {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
+.login-signup-message{
+    text-align: center;
+    color: #574964;
+    font-weight: 800;
+}
+.login-signup-message a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 900;
 }
 
-section > p a {
-    margin-left: 5px;
-    color: rgb(47, 47, 82);
-}
 
-.home {
-    display: flex;
-    flex-direction: column;
-}
-
-.welcome {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.welcome span {
-    font-size: 27px;
-    color: cornflowerblue;
-}
-
-button.auth-logout {
-    width: 100px;
-    align-self: center;
-}
