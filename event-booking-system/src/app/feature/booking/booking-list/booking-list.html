@@ -1,1 +1,32 @@
-<p>booking-list works!</p>
+<main>
+
+
+<div class="user-info">
+  <h1>
+    Welcome <span>{{authService.currentUser()?.displayName?.toUpperCase()}}</span> this is your Booking List 
+  </h1>
+
+</div>
+
+@if(!isLoading()){
+<div class="cards-containers">
+@for(item of bookingAndEvent$|async; track item.booking.id){
+     <div class="booking-card">
+      <h2>{{ item.event?.title ?? 'Event unavailable' }}</h2>
+      <p><span>Description : </span>{{item.event?.description}}</p>
+      <p><span><mat-icon>query_builder</mat-icon> Date : </span>{{ item.event?.date | date:'medium' }}</p>
+      <p><span><mat-icon>place</mat-icon> : </span>{{ item.event?.location }}</p>
+      <p><span> <mat-icon>event_seat</mat-icon> Seates Quntity : </span>{{item.booking?.seatsqty}}</p>
+      <button (click)="cancel(item.booking.id, item.booking.eventId)">
+        Cancel Booking
+      </button>
+    </div>
+}
+</div>
+}@else {
+    <div style="text-align: center;">
+       <app-loading-spinner></app-loading-spinner>
+    </div>
+}
+
+</main>
