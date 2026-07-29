@@ -1,0 +1,94 @@
+
+
+
+
+
+
+.cards-containers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+gap: 100px;
+  padding: 2rem;
+}
+
+.booking-card {
+  background: #ffdab3b9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.15s ease;
+  width: 500px;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.user-info{
+  padding: 1rem 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  width: 90%;
+}
+.user-info h1{
+  color:#574964 ;
+  font-weight: 900;
+}
+.booking-card h2 {
+  font-size: 2rem;
+  margin-block-end: 0.5rem;
+  color:#574964;
+}
+
+.booking-card p {
+  font-size: 1.5rem;
+  color:#574964;
+  margin-block: 0.25rem;
+}
+
+.booking-card button {
+  width: 100%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #C8AAAA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+form{
+  display: flex;
+  flex-direction: row;
+}
+form input{
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 40%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa56;
+  color: #574964;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.booking-card button:hover {
+  background: #c8aaaa9c;
+}
+
+.booking-card button:disabled {
+  background: #c8aaaa51;
+  cursor: not-allowed;
+}
+.booking-card p span{
+  font-weight: 900;
+}
+@media (max-width: 480px) {
+  .cards-containers {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
