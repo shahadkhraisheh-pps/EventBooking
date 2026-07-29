@@ -13,22 +13,20 @@
         <div class="auth-form-item">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" formControlName='email'>
-           @if(loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)) {
+           @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
            <p>
 
             @if (loginForm.get('email')?.invalid) {
                 <span >Email is required.</span>
             }
-            @if(loginForm.get('email')?.dirty) {   
-                <span>Email is invalid.</span>
-            }
+    
                     </p>
          }
         </div>
         <div class="auth-form-item">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" formControlName="password">
-          @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)) { 
+          @if(loginForm.get('password')?.invalid &&  loginForm.get('password')?.touched) { 
             <p>
                 @if(loginForm.get('password')?.errors) {  
                     <span>Password is required.</span>
