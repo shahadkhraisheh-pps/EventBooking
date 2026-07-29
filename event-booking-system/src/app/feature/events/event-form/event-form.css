@@ -1,0 +1,43 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  margin-block-start: 0.75rem;
+  font-size: 20px;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 2rem;
+}
+
+.error {
+  color: #c12e2e;
+  font-size: 0.8rem;
+}
+
+button {
+  margin-block-start: 1.5rem;
+  padding-block: 0.6rem;
+  background: #C8AAAA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+height: 50px;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

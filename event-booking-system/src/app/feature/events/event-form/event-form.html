@@ -1,0 +1,40 @@
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <label for="title">Title</label>
+  <input id="title" type="text" formControlName="title" />
+  @if (eventForm.get('title')?.invalid && eventForm.get('title')?.touched) {
+    <span class="error">Title must be at least 5 characters.</span>
+  }
+
+  <label for="description">Description</label>
+  <textarea id="description" formControlName="description" rows="4"></textarea>
+  @if (eventForm.get('description')?.invalid && eventForm.get('description')?.touched) {
+    <span class="error">Description must be at least 10 characters.</span>
+  }
+
+  <label for="date">Date & Time</label>
+  <input id="date" type="datetime-local" formControlName="date" />
+  @if (eventForm.get('date')?.invalid && eventForm.get('date')?.touched) {
+    <span class="error">Date is required.</span>
+  }
+
+  <label for="location">Location</label>
+  <input id="location" type="text" formControlName="location" />
+  @if (eventForm.get('location')?.invalid && eventForm.get('location')?.touched) {
+    <span class="error">Location is required.</span>
+  }
+
+  <label for="capacity">Capacity</label>
+  <input id="capacity" type="number" formControlName="capacity" min="1" />
+  @if (eventForm.get('capacity')?.invalid && eventForm.get('capacity')?.touched) {
+    <span class="error">Capacity must be at least 1.</span>
+  }
+  
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  <button type="submit" [disabled]="isLoading()">
+    {{ isLoading() ? 'Creating...' : 'Create Event' }}
+  </button>
+</form>
