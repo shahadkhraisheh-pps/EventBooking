@@ -1,1 +1,29 @@
-<p>event-list works!</p>
+<div class="cards-containers">
+  
+    @if(!isLoading()){
+     @for (event of events$ |async; track $index) {
+        <div class="event-card">
+            <h2>{{ event.title }}</h2>
+            <p class="desc">{{ event.description }}</p>
+            <p><span><mat-icon>event_seat</mat-icon>Capacity : </span> {{ event.capacity }}</p>
+            <p><span><mat-icon>place</mat-icon>Location : </span> {{ event.location }}</p>
+            <p><span><mat-icon>event_seat</mat-icon> Booked Seates : </span>{{event.bookedSeats}}</p>
+            <p><span><mat-icon>query_builder</mat-icon> Date: </span>{{ event.date | date:'medium' }}</p>
+            @if(event.capacity===0){
+             <button (click)="bookEvent(event.id)" [disabled]="event.capacity===0">Sold Out</button>
+            }@else {
+           <form  [formGroup]="bookForm">
+              <input type="number" formControlName="quntity" min="1" [max]="event.capacity" placeholder="Seate Quntity">
+                <button (click)="bookEvent(event.id)">Book Now</button>
+           </form>
+
+            }
+        </div>
+    }
+    }
+    @else {
+    <div style="text-align: center;">
+       <app-loading-spinner></app-loading-spinner>
+    </div>
+}
+</div>
