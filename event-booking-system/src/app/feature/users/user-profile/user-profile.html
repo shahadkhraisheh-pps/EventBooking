@@ -1,0 +1,22 @@
+
+
+
+<body>
+    <section>
+<div class="user-info">
+    <h1>Welcome to Event Booking </h1>
+    <h1 >
+       <mat-icon>perm_identity</mat-icon> {{curentUser?.displayName}}
+    </h1>
+    <h3>
+       <mat-icon>email</mat-icon> {{curentUser?.email}}
+    </h3>
+</div>
+
+    </section>
+
+<div class="btn-div">
+    <p>Go To Your Booking                   <button [routerLink]="['/bookings']">My Booking</button></p>
+</div>
+
+</body>
