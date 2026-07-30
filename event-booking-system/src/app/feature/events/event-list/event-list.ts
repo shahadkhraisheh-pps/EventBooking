@@ -36,7 +36,7 @@ export class EventList implements OnInit {
   events = signal<Events[]>([]);
   //add the input form for seats quntity
   bookForm: FormGroup = new FormGroup({
-    quntity: new FormControl('', [Validators.required]),
+    quntity: new FormControl('', [Validators.required ,Validators.min(1)]),
   });
 
   //get the event data form the srvice to show in the page
@@ -81,6 +81,13 @@ export class EventList implements OnInit {
     if (!this.authService.isLoggedIn()) {
       this.route.navigate(['/login']);
       return;
+    }
+    if(formValue.quntity===''){
+      alert ("you should enter a quntity");
+      this.isLoading.set(false);
+       return ;
+       
+
     }
 
     this.bookingService
