@@ -1,0 +1,74 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: event-booking-system
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: event-booking-system/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect Angular version and repository name
+        id: meta
+        shell: bash
+        run: |
+          ANGULAR_VERSION=$(node -p "require('./package.json').dependencies['@angular/core'] || require('./package.json').devDependencies['@angular/core']")
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          BASE_HREF="/${REPO_NAME}/"
+          echo "Angular version: ${ANGULAR_VERSION}"
+          echo "Repository name: ${REPO_NAME}"
+          echo "Base href: ${BASE_HREF}"
+          echo "angular_version=${ANGULAR_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "repo_name=${REPO_NAME}" >> "$GITHUB_OUTPUT"
+          echo "base_href=${BASE_HREF}" >> "$GITHUB_OUTPUT"
+
+      - name: Build (production)
+        run: npx ng build --configuration=production --base-href="${{ steps.meta.outputs.base_href }}"
+
+      - name: Prepare GitHub Pages artifacts
+        id: prepare
+        shell: bash
+        run: |
+          node scripts/prepare-gh-pages.mjs
+          OUTPUT_DIR=$(cat dist/.gh-pages-dir)
+          echo "output_dir=${OUTPUT_DIR}" >> "$GITHUB_OUTPUT"
+          echo "Deploy directory: event-booking-system/${OUTPUT_DIR}"
+          test -f "${OUTPUT_DIR}/index.html"
+          test -f "${OUTPUT_DIR}/404.html"
+          test -f "${OUTPUT_DIR}/.nojekyll"
+          grep -q "base href=\"${{ steps.meta.outputs.base_href }}\"" "${OUTPUT_DIR}/index.html"
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./event-booking-system/${{ steps.prepare.outputs.output_dir }}
+          publish_branch: gh-pages
+          force_orphan: true
+          enable_jekyll: false
