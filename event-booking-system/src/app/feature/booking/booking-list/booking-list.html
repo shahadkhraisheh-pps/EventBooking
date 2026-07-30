@@ -16,7 +16,7 @@
       <p><span>Description : </span>{{item.event?.description}}</p>
       <p><span><mat-icon>query_builder</mat-icon> Date : </span>{{ item.event?.date | date:'medium' }}</p>
       <p><span><mat-icon>place</mat-icon> : </span>{{ item.event?.location }}</p>
-      <p><span> <mat-icon>event_seat</mat-icon> Seates Quntity : </span>{{item.booking?.seatsqty}}</p>
+      <p><span> <mat-icon>event_seat</mat-icon> Seates Quntity : </span>{{item.booking.seatsqty}}</p>
       <button (click)="cancel(item.booking.id, item.booking.eventId)">
         Cancel Booking
       </button>
