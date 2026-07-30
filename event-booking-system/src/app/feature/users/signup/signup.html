@@ -12,20 +12,24 @@
               <label for="username">Username</label>
               <input type="text" name="username" id="username" formControlName='username'>
               @if(signupForm.get('username')?.invalid &&  signupForm.get('username')?.touched){
-                @if (signupForm.get('username')?.errors  ) {
+                @if (signupForm.get('username')?.hasError('required')  ) {
                   <span >Username is required.</span>
                 }
-              }
+                @if(signupForm.get('username')?.hasError('minlength')){
+                  <span>Username should at least 3 characters</span>
+                              }              }
             </div>
             <div class="auth-form-item">
               <label for="email">Email</label>
               <input type="email" name="email" id="email" formControlName='email'>
               @if(signupForm.get('email')?.invalid &&  signupForm.get('email')?.touched){
-              @if (signupForm.get('email')?.touched  ) {
+              @if (signupForm.get('email')?.hasError('required')  ) {
                   <span >Email is required.</span>
-             }@else if(signupForm.get('email')?.invalid) {  
+             }@if(signupForm.get('email')?.invalid) {  
                  <span>Email is invalid.</span>
-  
+          }@if(signupForm.get('email')?.hasError('pattern')){
+            <span>Please enter a valid email address (lowercase letters only).</span>
+
           }
           }   
             </div>
@@ -33,12 +37,16 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" formControlName="password">
            @if (signupForm.get('password')?.invalid &&  signupForm.get('password')?.touched) {
-           @if(signupForm.get('password')?.errors) {  
+           @if(signupForm.get('password')?.touched) {  
              <span>password is required.</span>
             }
-            @else if(signupForm.get('password')?.errors) {
+            @if(signupForm.get('password')?.invalid){
+              <span>password invalid</span>
+            }
+            @if(signupForm.get('password')?.hasError('minlength')) {
              <span >password must have more than 6 characters.</span>
-    
+            }@if(signupForm.get('password')?.hasError('pattern')){
+              <span>Password should contain numberr and capital latter </span>
             }
         }
             </div>

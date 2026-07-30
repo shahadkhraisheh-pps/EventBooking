@@ -21,9 +21,7 @@ constructor(private authService: AuthService,private router:Router) { }
 signupForm:FormGroup=new FormGroup({
   username: new FormControl('', [
     Validators.required,
-    Validators.minLength(3),
-    Validators.pattern(/^[a-zA-Z0-9]+$/)
-  ]),
+    Validators.minLength(3)  ]),
      email: new FormControl('', [
       Validators.required,
       Validators.email,
