@@ -33,7 +33,9 @@ getBookingForUser():Observable<Bookings[]> {
 }
 //book event for current user 
  bookEvent(eventId: string,quntity:number): Promise<void> {
-   const currentUser = this.authService.currentUser(); //get the current user
+ confirm("are you sure fro booking the event");{
+
+  const currentUser = this.authService.currentUser(); //get the current user
     if (!currentUser) {
       return Promise.reject('User not logged in'); //check if user login if no reject
     } 
@@ -50,9 +52,9 @@ getBookingForUser():Observable<Bookings[]> {
         throw new Error('Event is fully booked'); //check if the seate quntity less than capcity if yes book if not error
       }
 //update the booked seat number in event 
-      transaction.update(eventRef, { bookedSeats: eventData.bookedSeats + quntity });
+      transaction.update(eventRef, { bookedSeats: eventData.bookedSeats  + quntity });
     //update the capacity
-      transaction.update(eventRef,{capacity:eventData.capacity-quntity});
+      transaction.update(eventRef,{capacity:eventData.capacity ===0?0:eventData.capacity-quntity});
    
 
 //write the data of the booking to save in firstore
@@ -67,6 +69,8 @@ getBookingForUser():Observable<Bookings[]> {
       const bookingDocRef = await addDoc(bookingRef, bookingData);
       transaction.set(bookingDocRef, bookingData);
     });
+ }
+
 
  }
  //cancel the booking
@@ -88,7 +92,7 @@ getBookingForUser():Observable<Bookings[]> {
          this.seate=bookingsdoc.data()['seatsqty']
        }
        
-     transaction.update(eventRef,{bookedSeats:currentBooked-this.seate}) //update the seat number
+     transaction.update(eventRef,{bookedSeats:currentBooked===0?0:currentBooked-this.seate}) //update the seat number
      transaction.update(eventRef,{capacity:currentCapacitey+this.seate}) //update the cpacity number
      transaction.update(bookingRef,{status:'cancelled'}) //change the status to cancel
      transaction.update(bookingRef,{seatsqty:0})//change the stea qty to 0
