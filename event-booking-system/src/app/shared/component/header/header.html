@@ -1,33 +1,25 @@
 <header>
-   <div class="upper-header">
-<div class="logo">
+    <div class="logo">
         <a routerLink="/events">Event Booking System</a>
     </div>
-   
+
+    <div class="nav-link">
+        <nav>
+            <ul>
+                <li><a [routerLink]="['/events']" routerLinkActive="active">Events</a></li>
+                <li><a [routerLink]="['/bookings']" routerLinkActive="active">Booking</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <div class="header-btn">
         @if (isLoggedIn()) {
-            <p class="user-info"> <mat-icon>account_circle</mat-icon> {{currentUser()?.displayName}} {{currentUser()?.email}}              <button class="btn" (click)="logout()">Logout</button>
-</p>
-        }@else {
+            <div class="user-info">             
+                <mat-icon [routerLink]="['/user']">account_circle</mat-icon>
+                <button class="btn" (click)="logout()">Logout</button>
+            </div>
+        } @else {
             <button class="btn" [routerLink]="['/login']">Login</button>
-                                
         }
-    </div>
-   </div>
-    <div class="bottom-header">
-        <div class="nav-menu">
-        <div class="nav-link">
-            <nav>
-                <ul>
-                    <li><a [routerLink]="['/events']" routerLinkActive="active">Events</a></li>
-                    <li><a [routerLink]="['/bookings']" routerLinkActive="active">Booking</a></li>
-                   
-                </ul>
-            </nav>
-        </div>
- </div>
-     
-   
     </div>
 </header>
