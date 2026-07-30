@@ -1,10 +1,5 @@
 <body>
-     @if(error){
-
-        <div class="alert-danger">
-    <p>{{error}}</p>
-</div>
-}
+    
 @if(!isLoading()){
  <section>
    
@@ -34,6 +29,18 @@
             </p>
         }
         </div>
+    <div>
+        
+    </div>
+  @if(error){
+
+   <p class="alert-danger">
+<span >{{error}}</span>
+   </p> 
+
+}
+    
+       
         <button class="auth-form-button">Login</button>
     </form>
     <button class="auth-button" (click)="loginWithGoogle()">

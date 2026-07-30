@@ -51,16 +51,13 @@ section h2 {
     border-color: red;
 }
 
-.auth-form-item p {
-    color: red;
-}
-.alert-danger{
+
+.alert-danger {
         color: red;
-        border: 1px solid red;
         padding: 0 .4rem;
         border-radius: 10px;
-        margin-top: -10rem;
         margin-bottom: 1rem;
+    
 
 }
 button {

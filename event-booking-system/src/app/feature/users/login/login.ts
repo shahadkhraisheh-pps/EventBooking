@@ -42,14 +42,28 @@ loginForm:FormGroup=new FormGroup({
     this.isLoading.set(false);
 
   }
-).catch((error) => {
-  alert('Error logging in:'+error);
-  this.error = 'An error occurred during login. Please try again.';//if not show error massage
+).catch((error :any) => {
+  this.error = this.handelError(error);//if not show error massage
   this.isLoading.set(false);   //spinner stop
-
+ 
 });
   }
-
+private handelError(error:any):string{
+ switch (error.code) {
+      case 'auth/invalid-credential':
+        return 'The email or password you entered is incorrect.';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address format.';
+      case 'auth/user-disabled':
+        return 'This account has been disabled. Contact support.';
+      case 'auth/too-many-requests':
+        return 'Too many failed login attempts. This account is temporarily locked.';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your internet connection.';
+      default:
+        return 'An unexpected authentication error occurred. Please try again.';
+    }
+}
 //login with google provider
 loginWithGoogle(){
 this.isLoading.set(true); //the spinner work
@@ -61,6 +75,7 @@ this.authService.loginWithGoogle().then(
 
   }
 ).catch((error) => {
+  this.error=error;
   alert('Error logging in with Google:'+error);
   this.error = 'An error occurred during login with Google. Please try again.'; //if not show error massage
       this.isLoading.set(false);
