@@ -1,7 +1,38 @@
+<div class="filter-section">
+    <form class="form-group">
+      <div class="input-group">
+         <label >Search by Event Name </label>
+        <input type="text" [(ngModel)]="searchByName" name="searchByName">
+      </div>
+      <div class="input-group">
+ <label>
+    chose date
+</label>
+<input type="datetime-local" [(ngModel)]="searchByDate" name="searchByDate">
+      </div>
+      <div class="input-goup">
+<label>Location</label>
+<select [(ngModel)]="searchByLocation" name="searchByLocation">
+ @for (events of events$ |async; track $index) {
+        <option [value]="events.location">{{events.location}}</option>
+ }
+</select>
+      </div>
+
+<div class="input-group">
+    <label>
+        booked seates
+    </label>
+    <input type="range" [(ngModel)]="bookedSeates" name="bookedSeates" min="1" max="1000">
+</div>
+ </form>
+
+</div>
+
 <div class="cards-containers">
   
     @if(!isLoading()){
-     @for (event of events$ |async; track $index) {
+     @for (event of fillteredEvent() ; track $index) {
         <div class="event-card">
             <h2>{{ event.title }}</h2>
             <p class="desc">{{ event.description }}</p>
