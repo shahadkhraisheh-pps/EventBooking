@@ -129,6 +129,18 @@ select {
   border-color: var(--text-hover);
   box-shadow: 0 0 0 3px rgba(95, 95, 144, 0.15);
 }
+.input-group button{
+   width: 50%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+
+}
 @media screen and (max-width: 600px) {
   .form-group {
     padding: 1.5rem;

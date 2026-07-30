@@ -73,7 +73,14 @@ export class EventList implements OnInit {
 
     return result;
   });
-
+reset(){
+  this.searchByName.set('');
+  this.searchByDate.set(null);
+  this.searchByLocation.set('');
+  this.bookedSeates.set(0);
+ 
+   
+}
   //book the event by event id and the seats quntity
   bookEvent(eventId: string) {
     const formValue = this.bookForm.value;

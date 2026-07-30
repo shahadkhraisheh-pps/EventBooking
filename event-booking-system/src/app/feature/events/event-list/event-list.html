@@ -13,6 +13,7 @@
       <div class="input-goup">
 <label>Location</label>
 <select [(ngModel)]="searchByLocation" name="searchByLocation">
+    <option vlaue=" ">All</option>
  @for (events of events$ |async; track $index) {
         <option [value]="events.location">{{events.location}}</option>
  }
@@ -23,7 +24,10 @@
     <label>
         booked seates
     </label>
-    <input type="range" [(ngModel)]="bookedSeates" name="bookedSeates" min="1" max="1000">
+    <input type="range" [(ngModel)]="bookedSeates" name="bookedSeates" min="1" max="1000" value="0">
+</div>
+<div class="input-group">
+    <button type="reset" (click)="reset()">reset</button>
 </div>
  </form>
 
