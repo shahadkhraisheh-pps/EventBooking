@@ -32,7 +32,7 @@ export class EventList implements OnInit {
   searchByName = signal<string>('');
   searchByDate = signal<string>('');
   searchByLocation = signal<string>('');
-  bookedSeates = signal<number>(1000);
+  bookedSeates = signal<number>(0);
   events = signal<Events[]>([]);
   //add the input form for seats quntity
   bookForm: FormGroup = new FormGroup({
