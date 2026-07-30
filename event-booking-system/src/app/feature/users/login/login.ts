@@ -66,19 +66,14 @@ private handelError(error:any):string{
 }
 //login with google provider
 loginWithGoogle(){
-this.isLoading.set(true); //the spinner work
 
 this.authService.loginWithGoogle().then(
   (user) => {
     this.router.navigate(['/events']);   //if work go to event page 
-        this.isLoading.set(false);
 
   }
 ).catch((error) => {
-  this.error=error;
-  alert('Error logging in with Google:'+error);
-  this.error = 'An error occurred during login with Google. Please try again.'; //if not show error massage
-      this.isLoading.set(false);
+  this.error=this.handelError(error);
 
 });
   }

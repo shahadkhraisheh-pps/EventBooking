@@ -75,27 +75,29 @@ private handelEroor(error:any):string{
 
  
   
-loginWithGoogle(): Promise<any> {
+async loginWithGoogle(): Promise<any> {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(this.auth, provider) .then((userCredential) => {
-      const user = userCredential.user;
-      
-      // update the auth profile display name
-      return updateProfile(user, { displayName: user.displayName })
-        .then(() => {
-          // create a specific document reference using the user's audth ui
-          const userDocRef = doc(this.firestore, `users/${user.uid}`);
+  
+  provider.setCustomParameters({ prompt: 'select_account' }); //keep google page open till user chose the account
 
-          // use setDoc to save user metadata in firestore
-          return setDoc(userDocRef, {
-            uid: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            createdAt: new Date().toISOString(),
-          });
-        });
+  try {
+    const userCredential = await signInWithPopup(this.auth, provider);
+    const user = userCredential.user;
+//make the user credential to add the name 
+    const userDocRef = doc(this.firestore, `users/${user.uid}`);
+    await setDoc(userDocRef, {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      createdAt: new Date().toISOString(),
     });
+
+    return userCredential;
+  } catch (error: any) {
+    throw this.handelEroor(error);
+  }
 }
+
   logout(): Promise<void> {
     return signOut(this.auth); //logout the user
   }

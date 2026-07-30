@@ -55,8 +55,7 @@ signUpWithEmailAndPassword(){
       
     }
   ).catch((error) => {
-    alert('Error signing up:'+error);
-    this.error = 'An error occurred during signup. Please try again.';//if not show error massage
+    this.error = this.handelError(error);//if not show error massage
      this.isLoading.set(true);
 
   });
@@ -73,9 +72,25 @@ signUpWithEmailAndPassword(){
       }
     ).catch((error) => {
       alert('Error signing up with Google:'+error);
-      this.error = 'An error occurred during signup with Google. Please try again.';
+      this.error = this.handelError(error);
           this.isLoading.set(true);
 
     });
   }
+  private handelError(error:any):string{
+ switch (error.code) {
+      case 'auth/invalid-credential':
+        return 'The email or password you entered is incorrect.';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address format.';
+      case 'auth/user-disabled':
+        return 'This account has been disabled. Contact support.';
+      case 'auth/too-many-requests':
+        return 'Too many failed login attempts. This account is temporarily locked.';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your internet connection.';
+      default:
+        return 'An unexpected authentication error occurred. Please try again.';
+    }
+}
 }
