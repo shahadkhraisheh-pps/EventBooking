@@ -32,50 +32,50 @@ getBookingForUser():Observable<Bookings[]> {
 
 }
 //book event for current user 
- bookEvent(eventId: string,quntity:number): Promise<void> {
- confirm("are you sure fro booking the event");{
+ bookEvent(eventId: string, quntity: number): Promise<void> {
+   if (confirm("are you sure fro booking the event")) {
 
-  const currentUser = this.authService.currentUser(); //get the current user
-    if (!currentUser) {
-      return Promise.reject('User not logged in'); //check if user login if no reject
-    } 
-    const eventRef = doc(this.firestore, 'events', eventId); //get the doc of the event collection
-    const bookingRef = collection(this.firestore, 'bookings'); //get or create booking collection to save that in it
+     const currentUser = this.authService.currentUser(); //get the current user
+     if (!currentUser) {
+       return Promise.reject('User not logged in'); //check if user login if no reject
+     }
+     const eventRef = doc(this.firestore, 'events', eventId); //get the doc of the event collection
+     const bookingRef = collection(this.firestore, 'bookings'); //get or create booking collection to save that in it
 
-    return runTransaction(this.firestore, async (transaction) => {
-      const eventDoc = await transaction.get(eventRef); //get the event doc
-      if (!eventDoc.exists()) {  //if not exists throw error
-        throw new Error('Event does not exist');
-      }
-      const eventData = eventDoc.data() as any; //take the data in doc save as any 
-      if (eventData.capacity < quntity) {
-        throw new Error('Event is fully booked'); //check if the seate quntity less than capcity if yes book if not error
-      }
-//update the booked seat number in event 
-      transaction.update(eventRef, { bookedSeats: eventData.bookedSeats  + quntity });
-    //update the capacity
-      transaction.update(eventRef,{capacity:eventData.capacity ===0?0:eventData.capacity-quntity});
-   
+     return runTransaction(this.firestore, async (transaction) => {
+       const eventDoc = await transaction.get(eventRef); //get the event doc
+       if (!eventDoc.exists()) {  //if not exists throw error
+         throw new Error('Event does not exist');
+       }
+       const eventData = eventDoc.data() as any; //take the data in doc save as any 
+       if (eventData.capacity < quntity) {
+         throw new Error('Event is fully booked'); //check if the seate quntity less than capcity if yes book if not error
+       }
+       //update the booked seat number in event 
+       transaction.update(eventRef, { bookedSeats: eventData.bookedSeats + quntity });
+       //update the capacity
+       transaction.update(eventRef, { capacity: eventData.capacity === 0 ? 0 : eventData.capacity - quntity });
 
-//write the data of the booking to save in firstore
-      const bookingData: Omit<Bookings, 'id'> = {
-        eventId: eventId,
-        userId: currentUser.uid,
-        bookingDate: new Date().toISOString(),
-        status: 'confirmed',
-        seatsqty:Number(quntity)
-      };  
-//add doc in booking collection
-      const bookingDocRef = await addDoc(bookingRef, bookingData);
-      transaction.set(bookingDocRef, bookingData);
-    });
- }
+       //write the data of the booking to save in firstore
+       const bookingData: Omit<Bookings, 'id'> = {
+         eventId: eventId,
+         userId: currentUser.uid,
+         bookingDate: new Date().toISOString(),
+         status: 'confirmed',
+         seatsqty: Number(quntity)
+       };
+       //add doc in booking collection
+       const bookingDocRef = await addDoc(bookingRef, bookingData);
+       transaction.set(bookingDocRef, bookingData);
+     });
+   }
 
-
+   return Promise.resolve();
  }
  //cancel the booking
      async cancelBookin(bookingId:string,eventId:string):Promise<void>{
-      const eventRef=doc(this.firestore,'events',eventId); //get the doc in event in same eventId
+  if( confirm("Are your sure you want to cancle the event booking ")){
+  const eventRef=doc(this.firestore,'events',eventId); //get the doc in event in same eventId
       const bookingRef=doc(this.firestore,'bookings',bookingId); //get the doc in booking same bookinId
 
       await runTransaction(this.firestore,async (transaction)=>{
@@ -104,6 +104,8 @@ getBookingForUser():Observable<Bookings[]> {
 
      }
 
+   }
+    
 
 
 }
