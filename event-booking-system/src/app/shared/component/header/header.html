@@ -4,22 +4,21 @@
     </div>
 
     <div class="nav-link">
-        <nav>
-            <ul>
-                <li><a [routerLink]="['/events']" routerLinkActive="active">Events</a></li>
-                <li><a [routerLink]="['/bookings']" routerLinkActive="active">Booking</a></li>
-            </ul>
-        </nav>
+        <ul>
+            <li><a routerLink="/events" routerLinkActive="active">Events</a></li>
+            <li><a routerLink="/bookings" routerLinkActive="active">Booking</a></li>
+        </ul>
     </div>
 
     <div class="header-btn">
         @if (isLoggedIn()) {
             <div class="user-info">             
-                <mat-icon [routerLink]="['/user']">account_circle</mat-icon>
+                <mat-icon class="mat-icon" routerLink="/user">account_circle</mat-icon>
+                <p routerLink="/user"><span>{{ currentUser()?.displayName }}</span></p>
                 <button class="btn" (click)="logout()">Logout</button>
             </div>
         } @else {
-            <button class="btn" [routerLink]="['/login']">Login</button>
+            <button class="btn" routerLink="/login">Login</button>
         }
     </div>
 </header>
