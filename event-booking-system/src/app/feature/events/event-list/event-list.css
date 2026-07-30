@@ -1,138 +1,76 @@
-.cards-containers { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 2rem; 
-  padding: 2rem; 
-} 
-
-.event-card { 
-  background: #ffdab3b9; 
-  border: 1px solid #e0e0e0; 
-  border-radius: 8px; 
-  padding: 2rem; 
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); 
-  transition: box-shadow 0.15s ease; 
-  width: 100%; 
-  box-sizing: border-box; }
-
-.event-card:hover { 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); 
-} 
-
-.event-card h2 { 
-  font-size: 2rem; 
-  margin-block-end: 0.5rem; 
-  color: #574964; 
-} 
-
-.event-card p { 
-  font-size: 1.5rem; 
-  color: #574964; 
-  margin-block: 0.25rem; 
-} 
-
-.event-card p span { 
-  font-weight: 900; 
-} 
-
-.event-card button { 
-  width: 100%; 
-  margin-block-start: 1rem; 
-  padding-block: 0.6rem; 
-  background: #C8AAAA; 
-  color: #fff; 
-  border: none; 
-  border-radius: 6px; 
-  font-size: 0.95rem; 
-  cursor: pointer; 
-} 
-
-.event-card button:hover { 
-  background: #c8aaaa9c; 
-} 
-
-.event-card button:disabled { 
-  background: #c8aaaa51; 
-  cursor: not-allowed; 
-} 
-
-form { 
-  display: flex; 
-  flex-direction: row; 
-  flex-wrap: wrap; 
-  gap: 1rem; 
-} 
-
-form input { 
-  font-size: 0.95rem; 
-  margin-block-start: 1rem; 
-  padding-block: 0.6rem; 
-  background: #c8aaaa56; 
-  color: #574964; 
-  border: none; 
-  border-radius: 6px; 
-  cursor: pointer; 
-} 
-
-.form-group { 
-  background: var(--mat-sys-surface-container-high, rgba(95, 95, 144, 0.05)); 
-  border: 1px solid var(--mat-sys-outline-variant, rgba(95, 95, 144, 0.2)); 
-  border-radius: 12px; 
-  padding: 2.25rem; 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-  gap: 1.8rem; 
-  align-items: flex-end; 
-  margin: 2rem; 
-} 
-
-.input-group { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.5rem; 
-  width: 100%; 
-} 
-
-.input-group label { 
-  font-size: 0.85rem; 
-  font-weight: 600; 
-  color: var(--text); 
-} 
-
-.input-group input, 
-.input-group select,
-select { 
-  padding: 0.6rem; 
-  border-radius: 6px; 
-  border: 1px solid var(--mat-sys-outline-variant, rgba(95, 95, 144, 0.25)); 
-  background: var(--mat-sys-surface-container, rgba(255, 255, 255, 0.9)); 
-  color: var(--text); 
-  font-size: 0.9rem; 
-  outline: none; 
-  width: 100%; 
-  box-sizing: border-box; 
-  accent-color: var(--text); 
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
-} 
-
-.input-group input:focus, 
-.input-group select:focus { 
-  border-color: var(--text-hover); 
-  box-shadow: 0 0 0 3px rgba(95, 95, 144, 0.15); 
-} 
-
-@media screen and (max-width: 600px) { 
-  .cards-containers {
-    padding: 1rem;
-    gap: 1.5rem;
-  }
-  
-  
-  .event-card h2 { font-size: 1.6rem; }
-  .event-card p { font-size: 1.2rem; }
+.cards-containers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 100px;
+  padding: 2rem;
 }
-
-
+.event-card {
+  background: #ffdab3b9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.15s ease;
+  width: 500px;
+}
+.event-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.event-card h2 {
+  font-size: 2rem;
+  margin-block-end: 0.5rem;
+  color: #574964;
+}
+.event-card p {
+  font-size: 1.5rem;
+  color: #574964;
+  margin-block: 0.25rem;
+}
+.event-card button {
+  width: 100%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+form {
+  display: flex;
+  flex-direction: row;
+}
+form input {
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 40%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa56;
+  color: #574964;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.event-card button:hover {
+  background: #c8aaaa9c;
+}
+.event-card button:disabled {
+  background: #c8aaaa51;
+  cursor: not-allowed;
+}
+.event-card p span {
+  font-weight: 900;
+}
+@media (max-width: 480px) {
+  .cards-containers {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
 .form-group {
   background: var(--mat-sys-surface-container-high, rgba(95, 95, 144, 0.05));
   border: 1px solid var(--mat-sys-outline-variant, rgba(95, 95, 144, 0.2));
@@ -144,20 +82,17 @@ select {
   align-items: flex-end;
   margin: 2rem;
 }
-
 .input-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
 }
-
 .input-group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text); 
+  color: var(--text);
 }
-
 .input-group input,
 .input-group select {
   padding: 0.6rem;
@@ -170,10 +105,12 @@ select {
   width: 100%;
   box-sizing: border-box; 
   accent-color: var(--text); 
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
-select{
-    padding: 0.6rem;
+select {
+  padding: 0.6rem;
   border-radius: 6px;
   border: 1px solid var(--mat-sys-outline-variant, rgba(95, 95, 144, 0.25));
   background: var(--mat-sys-surface-container, rgba(255, 255, 255, 0.9));
@@ -183,9 +120,10 @@ select{
   width: 100%;
   box-sizing: border-box; 
   accent-color: var(--text); 
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
-
 .input-group input:focus,
 .input-group select:focus {
   border-color: var(--text-hover);
@@ -196,11 +134,5 @@ select{
     padding: 1.5rem;
     margin: 1rem;
     gap: 1.2rem;
-
   }
-  .input-group input{
-    height: 20px;
-  }
-  
-  
 }
