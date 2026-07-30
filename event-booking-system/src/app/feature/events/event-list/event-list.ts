@@ -30,7 +30,7 @@ export class EventList implements OnInit {
   private bookingService = inject(BookingsService);
   private authService = inject(AuthService);
   searchByName = signal<string>('');
-  searchByDate = signal<string>('');
+  searchByDate = signal<Date | null>(null);
   searchByLocation = signal<string>('');
   bookedSeates = signal<number>(0);
   events = signal<Events[]>([]);
@@ -56,8 +56,9 @@ export class EventList implements OnInit {
     }
 
     //Filter by Date 
-    if(this.searchByDate()){
-      result=result.filter(e=>e.date === this.searchByDate() )
+    const searchDate = this.searchByDate();
+    if (searchDate) {
+      result = result.filter(e => e.date === new Date(searchDate).toISOString());
     }
 
     //Filter by Location

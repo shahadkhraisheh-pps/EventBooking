@@ -1,13 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, query, runTransaction, updateDoc, where } from '@angular/fire/firestore/lite';
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, query, runTransaction, updateDoc, where } from '@angular/fire/firestore/lite';
 import { Bookings } from '../models/bookings.model';
 import { Observable } from 'rxjs/internal/Observable';
-import id from '@angular/common/locales/extra/id';
 import { AuthService } from './auth.service';
-import {  toSignal } from '@angular/core/rxjs-interop';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs/internal/operators/switchMap';
-import { of } from 'rxjs';
 import { getDoc } from 'firebase/firestore/lite';
 
 @Injectable({
