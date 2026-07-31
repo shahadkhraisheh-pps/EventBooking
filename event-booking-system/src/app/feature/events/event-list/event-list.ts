@@ -24,15 +24,38 @@ FormsModule  ],
   styleUrl: './event-list.css',
 })
 export class EventList implements OnInit {
+
+  //loading spinner
   isLoading = signal(false);
+  //service inject
   private eventService = inject(EventsService);
   private route = inject(Router);
   private bookingService = inject(BookingsService);
   private authService = inject(AuthService);
+
+  //search ngModel data
   searchByName = signal<string>('');
   searchByDate = signal<Date | null>(null);
   searchByLocation = signal<string>('');
   bookedSeates = signal<number>(0);
+
+  //load more cards
+  showCountCards=signal<number>(6);
+  readonly pageSize=6; 
+  //display events cards first 6 cards then when load more add more 6 
+  //using slice method from 0-6 then 0-12 nad like this 
+displayEventsCards=computed(()=>{
+  return this.fillteredEvent().slice(0,this.showCountCards());
+
+})
+//just show load more when the show events card is more than the event length
+hasMoreCards=computed(()=>{
+  return this.showCountCards()<this.fillteredEvent().length;
+})
+//load more button just change the number of the cards showing
+loadMore():void{
+this.showCountCards.update(c=>c+this.pageSize);
+}
   events = signal<Events[]>([]);
   //add the input form for seats quntity
   bookForm: FormGroup = new FormGroup({

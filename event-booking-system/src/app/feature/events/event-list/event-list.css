@@ -141,6 +141,23 @@ select {
   cursor: pointer;
 
 }
+.loadmore-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.loadmore-btn button{
+   width: 30%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  align-items: center;
+}
 @media screen and (max-width: 600px) {
   .form-group {
     padding: 1.5rem;

@@ -36,7 +36,7 @@
 <div class="cards-containers">
   
     @if(!isLoading()){
-     @for (event of fillteredEvent() ; track $index) {
+     @for (event of displayEventsCards() ; track $index) {
         <div class="event-card">
             <h2>{{ event.title }}</h2>
             <p class="desc">{{ event.description }}</p>
@@ -67,4 +67,9 @@
        <app-loading-spinner></app-loading-spinner>
     </div>
 }
+
 </div>
+<div class="loadmore-btn">
+@if(hasMoreCards()){
+    <button  (click)="loadMore()">Load More ...</button>
+}</div>
