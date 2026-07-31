@@ -96,11 +96,12 @@ this.showCountCards.update(c=>c+this.pageSize);
 
     return result;
   });
-reset(){
+reset():void{
   this.searchByName.set('');
   this.searchByDate.set(null);
   this.searchByLocation.set('');
   this.bookedSeates.set(0);
+  this.showCountCards.set(this.pageSize)
  
    
 }
