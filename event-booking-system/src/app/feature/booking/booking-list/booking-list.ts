@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { BookingsService } from '../../../core/service/bookings.service';
 import { EventsService } from '../../../core/service/events.service';
 import { BookingAndEvent, Bookings } from '../../../core/models/bookings.model';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { LoadingSpinner } from "../../../shared/loading-spinner/loading-spinner";
 import { AuthService } from '../../../core/service/auth.service';
 import { MatIconModule } from '@angular/material/icon';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { initializeApp } from 'firebase/app';
 
 
 @Component({
@@ -39,6 +41,28 @@ export class BookingList {
     )
   );
 
+  //load more 
+  showBookingCount=signal<number>(6);
+  readonly pageSize=6;
+
+  //convert bookingAndEvent to signal 
+  bookingAndEvent=toSignal(this.bookingAndEvent$,{initialValue:[]as BookingAndEvent[]})
+
+  //the booking cards that gonna show 
+  displayBookingCards=computed(()=>{
+    return this.bookingAndEvent().slice(0,this.showBookingCount());
+  })
+
+  //hasMore card 
+  hasMoreCards=computed(()=>{
+    return this.showBookingCount()< this.bookingAndEvent().length;
+  })
+
+  //load more
+  loadMore():void{
+    this.showBookingCount.update(v=>v+this.pageSize);
+  }
+  
   //cancle booking 
   cancel(bookingId:string,eventId:string):void{
     this.isLoading.set(true);

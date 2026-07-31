@@ -86,6 +86,23 @@ form input{
 .booking-card p span{
   font-weight: 900;
 }
+.loadmore-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.loadmore-btn button{
+   width: 30%;
+  margin-block-start: 1rem;
+  padding-block: 0.6rem;
+  background: #c8aaaa;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  align-items: center;
+}
 @media (max-width: 480px) {
   .cards-containers {
     grid-template-columns: 1fr;

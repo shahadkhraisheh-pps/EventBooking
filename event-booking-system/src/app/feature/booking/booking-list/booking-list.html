@@ -10,7 +10,7 @@
 
 @if(!isLoading()){
 <div class="cards-containers">
-@for(item of bookingAndEvent$|async; track item.booking.id){
+@for(item of displayBookingCards(); track item.booking.id){
      <div class="booking-card">
       <h2>{{ item.event?.title ?? 'Event unavailable' }}</h2>
       <p><span>Description : </span>{{item.event?.description}}</p>
@@ -28,5 +28,9 @@
        <app-loading-spinner></app-loading-spinner>
     </div>
 }
+<div class="loadmore-btn">
+@if(hasMoreCards()){
+    <button  (click)="loadMore()">Load More ...</button>
+}</div>
 
 </main>
