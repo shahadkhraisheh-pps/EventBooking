@@ -60,6 +60,9 @@ section h2 {
     
 
 }
+span{
+    color: red;
+}
 button {
     display: flex;
     justify-content: center;

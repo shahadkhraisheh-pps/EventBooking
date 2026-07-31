@@ -25,9 +25,7 @@
               @if(signupForm.get('email')?.invalid &&  signupForm.get('email')?.touched){
               @if (signupForm.get('email')?.hasError('required')  ) {
                   <span >Email is required.</span>
-             }@if(signupForm.get('email')?.invalid) {  
-                 <span>Email is invalid.</span>
-          }@if(signupForm.get('email')?.hasError('pattern')){
+             }@if(signupForm.get('email')?.hasError('pattern')){
             <span>Please enter a valid email address (lowercase letters only).</span>
 
           }
@@ -37,11 +35,8 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" formControlName="password">
            @if (signupForm.get('password')?.invalid &&  signupForm.get('password')?.touched) {
-           @if(signupForm.get('password')?.touched) {  
+           @if(signupForm.get('password')?.hasError('required')) {  
              <span>password is required.</span>
-            }
-            @if(signupForm.get('password')?.invalid){
-              <span>password invalid</span>
             }
             @if(signupForm.get('password')?.hasError('minlength')) {
              <span >password must have more than 6 characters.</span>
